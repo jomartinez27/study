@@ -48,45 +48,71 @@
 // }
 
 // Stack with ES6
-class Stack {
-  constructor() {
-    this.items = [];
-  }
+// There is one data type we can use to ensure that the property will be
+// private in a class, called WeakMap.
+// Finally we wrap the Stack class with a closure, so that WeakMap
+// has scope only inside the function
 
-  // Adds an element to top of stack
-  push(element) {
-    this.items.push(element);
-  }
+let Stack = (function () {
+  const items = new WeakMap(); // we declare the items variable as a WeakMap
+  class Stack {
+    constructor() {
+      // we set the items value inside the constructor by setting
+      // this (reference to the Stack class) as the key of the WeakMap
+      // and the array that represents the stack as its value
+      items.set(this, []);
+    }
 
-  // Following LIFO, we remove the last element
-  pop() {
-    this.items.pop();
-  }
+    // Adds an element to top of stack
+    push(element) {
+      // we retrieve the value of the items by retrieving the value from the
+      // WeakMap, by passing this as the key
+      let s = items.get(this);
+      s.push(element);
+    }
 
-  // This method will return the item from the top of the stack
-  peek() {
-    return this.items[this.items.length - 1]
-  }
+    // Following LIFO, we remove the last element
+    pop() {
+      let s = items.get(this);
+      let r = s.pop();
+      return r;
+    }
 
-  // helper method that returns a boolean if list is empty or not
-  isEmpty() {
-    return this.items.length === 0;
-  }
+    // This method will return the item from the top of the stack
+    peek() {
+      let s = items.get(this);
+      return s[s.length - 1]
+    }
 
-  // clear method simply empties the stack
-  clear() {
-    this.items = []
-  }
+    // helper method that returns a boolean if list is empty or not
+    isEmpty() {
+      let s = items.get(this);
+      return s.length === 0;
+    }
 
-  // we can implement a length method (called size for collections)
-  size() {
-    return this.items.length;
-  }
+    // clear method simply empties the stack
+    clear() {
+      let s = items.get(this);
+      while(s.length > 0) {
+        s.pop();
+      }
+      return s;
+    }
 
-  print() {
-    console.log(this.items.toString())
+    // we can implement a length method (called size for collections)
+    size() {
+      let s = items.get(this);
+      return s.length;
+    }
+
+    print() {
+      let s = items.get(this);
+      console.log(s);
+    }
   }
-}
+  return Stack; // when the constructor of the Stack function is called, it
+  // will return an instance of the Stack class
+})();
 
 let stack = new Stack();
 console.log(stack.isEmpty());
