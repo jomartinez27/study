@@ -63,18 +63,22 @@ class Stack {
     this.items.pop();
   }
 
+  // This method will return the item from the top of the stack
   peek() {
     return this.items[this.items.length - 1]
   }
 
+  // helper method that returns a boolean if list is empty or not
   isEmpty() {
     return this.items.length === 0;
   }
 
+  // clear method simply empties the stack
   clear() {
     this.items = []
   }
 
+  // we can implement a length method (called size for collections)
   size() {
     return this.items.length;
   }
