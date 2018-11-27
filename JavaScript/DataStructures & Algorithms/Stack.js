@@ -53,8 +53,34 @@ class Stack {
     this.items = [];
   }
 
+  // Adds an element to top of stack
   push(element) {
     this.items.push(element);
+  }
+
+  // Following LIFO, we remove the last element
+  pop() {
+    this.items.pop();
+  }
+
+  peek() {
+    return this.items[this.items.length - 1]
+  }
+
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+  clear() {
+    this.items = []
+  }
+
+  size() {
+    return this.items.length;
+  }
+
+  print() {
+    console.log(this.items.toString())
   }
 }
 
