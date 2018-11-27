@@ -4,40 +4,96 @@
 // Think waiting in line scenario
 
 // ES5 implementation
-function Queue() {
-  // can use an array to store items
-  let items = [];
+// function Queue() {
+//   // can use an array to store items
+//   let items = [];
+//
+//   //enqueue(el): adds a new item at the back of queue
+//   this.enqueue = function(ele) {
+//     // push elements to the back of the queue
+//     items.push(ele)
+//   }
+//
+//   // dequeue: removes the first item from the queue (item from from)
+//   this.dequeue = function() {
+//     // following FIFO principle, the first item that we added is the one
+//     // removed.
+//     return items.shift();
+//   }
+//
+//   // front: returns the frst element from the queue
+//   this.front = function() {
+//     return items[0];
+//   }
+//
+//   //isEmpty: boolean method
+//   this.isEmpty = function() {
+//     return items.length === 0;
+//   }
+//
+//
+//   //size: returns the length
+//   this.size = function() {
+//     return items.length;
+//   }
+//
+//   this.print = function() {
+//     console.log(items.toString());
+//   }
+// }
 
-  //enqueue(el): adds a new item at the back of queue
-  this.enqueue = function(ele) {
-    // push elements to the back of the queue
-    items.push(ele)
+export default class Queue {
+  constructor() {
+    this.count = 0;
+    this.lowestCount = 0;
+    this.items = {};
   }
 
-  // dequeue: removes the first item from the queue (item from from)
-  this.dequeue = function() {
-    // following FIFO principle, the first item that we added is the one
-    // removed.
-    return items.shift();
+  enqueue(ele) {
+    this.items[this.count] = ele;
+    this.count++;
   }
 
-  // front: returns the frst element from the queue
-  this.front = function() {
-    return items[0];
+  dequeue() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    const result = this.items[this.lowestCount];
+    delete this.items[this.lowestCount];
+    this.lowestCount++;
+    return result;
   }
 
-  //isEmpty: boolean method
-  this.isEmpty = function() {
-    return items.length === 0;
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.items[this.lowestCount];
   }
 
-
-  //size: returns the length
-  this.size = function() {
-    return items.length;
+  isEmpty() {
+    return this.size() === 0
   }
 
-  this.print = function() {
-    console.log(items.toString());
+  size() {
+    return this.count - this.lowestCount;
+  }
+
+  clear() {
+    this.items = {};
+    this.lowestCount = 0;
+    this.count = 0;
+  }
+
+  print() {
+    if (this.isEmpty()) {
+      return "";
+    }
+
+    let objString = `${this.items[this.lowestCount]}`;
+    for (let i = this.lowestCount + 1; i < this.count; i++) {
+      objString = `${objString},${this.items[i]}`;
+    }
+    return objString;
   }
 }
