@@ -80,4 +80,28 @@ export default class Stack {
     }
     return this.items[this.count - 1];
   }
+
+  isEmpty() {
+    return this.count === 0;
+  }
+
+  clear() {
+    this.items = {};
+    this.count = 0;
+  }
+
+  size() {
+    return this.count;
+  }
+
+  print() {
+    if (this.isEmpty()) {
+      return "";
+    }
+    let objString = `${this.items[0]}`;
+    for (let i = 1; i < this.count; i++) {
+      objString = `${objString},${this.items[i]}`
+    }
+    return objString;
+  }
 }
