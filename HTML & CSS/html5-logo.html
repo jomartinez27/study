@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML5 Logo</title>
+    <script>
+      function init() {
+        let fontFamily = "65px 'Gill Sans Ultra Bold', sans-serif";
+        let ctx = document.getElementById("canvas").getContext('2d');
+        ctx.fillStyle = "#E34C26";
+        ctx.beginPath();
+        ctx.moveTo(39, 250);
+        ctx.lineTo(17, 0);
+        ctx.lineTo(262, 0);
+        ctx.lineTo(239, 250);
+        ctx.lineTo(139, 278);
+        ctx.closePath();
+        ctx.fill();
+        ctx.font = fontFamily;
+        ctx.fillText("HTML", 31,60);
+      }
+    </script>
+  </head>
+  <body onLoad="init();">
+    <canvas id="canvas" width="600" height="400">
+    </canvas>
+  </body>
+</html>
