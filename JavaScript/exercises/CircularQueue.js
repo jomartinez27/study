@@ -1,4 +1,4 @@
-import Queue from '../Data Structures/Queue.js';
+import Queue from '../DataStructures/Queue.js';
 
 // Hot Potato game is a game where person are in a circle
 // A hot potato is passed around until it is stopped
