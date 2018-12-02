@@ -235,4 +235,23 @@ export default class LinkedList {
     const index = this.indexOf(element);
     return this.removeAt(index);
   }
+
+  indexOf(element) {
+    let current = this.head;
+    for (let i = 0; i < this.size() && current !== null; i++) {
+      if (current.element === element) {
+        return i;
+      }
+      current = current.next;
+    }
+    return -1;
+  }
+
+  isEmpty() {
+    return this.count === 0;
+  }
+
+  size() {
+    return this.count;
+  }
 }
