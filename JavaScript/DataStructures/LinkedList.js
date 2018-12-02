@@ -155,7 +155,7 @@
 
 export default class Node {
   constructor(ele) {
-    this.ele = ele
+    this.element = ele
     this.next = null;
   }
 }
@@ -195,6 +195,44 @@ export default class LinkedList {
   }
 
   insertAt(ele, index) {
-    
+    if (index >= 0 && index <= this.count) {
+      const node = new Node(ele);
+
+      if (index === 0) {
+        const current = this.head;
+        node.next = current;
+        this.head = node;
+      } else {
+        const previous = this.getElementAt(index - 1);
+        node.next = previous.next;
+        previous.next = node;
+      }
+      this.count++;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head;
+      if (index === 0) {
+        this.head = current.next;
+      } else {
+        const previous = this.getElementAt(index - 1);
+        current = previous.next;
+        previous.next = current.next;
+      }
+      this.count--;
+      return current.element;
+    } else {
+      return undefined;
+    }
+  }
+
+  remove(element) {
+    const index = this.indexOf(element);
+    return this.removeAt(index);
   }
 }
