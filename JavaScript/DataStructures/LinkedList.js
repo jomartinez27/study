@@ -183,5 +183,18 @@ export default class LinkedList {
     this.count++;
   }
 
+  getElementAt(index) {
+    if (index >= 0 && index <= this.count) {
+      let node = this.head;
+      for (let i = 0; i < index && node !== null; i++) {
+        node = node.next;
+      }
+      return node;
+    }
+    return undefined;
+  }
 
+  insertAt(ele, index) {
+    
+  }
 }
