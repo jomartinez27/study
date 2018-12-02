@@ -94,7 +94,7 @@
 // }
 
 class Node {
-  constructor(element, next, prev) {
+  constructor(element, next = null, prev = null) {
     this.element = element;
     this.next = next;
     this.prev = prev;
@@ -106,5 +106,18 @@ export default class DoublyLinkedList {
     this.head = null;
     this.tail = null;
     this.count = 0;
+  }
+
+  insert(ele) {
+    let node = new Node(element);
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      node.prev = this.tail;
+      this.tail = node;
+    }
+    this.count++;
   }
 }
