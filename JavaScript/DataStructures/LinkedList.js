@@ -254,4 +254,26 @@ export default class LinkedList {
   size() {
     return this.count;
   }
+
+  getHead() {
+    return this.head;
+  }
+
+  clear() {
+    this.head = null;
+    this.count = 0;
+  }
+
+  toString() {
+    if (this.head === null) {
+      return "";
+    }
+    let objStr = `${this.head.element}`;
+    let current = this.head.next;
+    for (let i = 1; i < this.size() && current !== null; i++) {
+      objStr = `${objStr},${current.element}`;
+      current = current.next;
+    }
+    return objStr;
+  }
 }
