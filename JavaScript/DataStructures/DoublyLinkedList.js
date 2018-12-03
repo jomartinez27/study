@@ -200,4 +200,14 @@ export default class DoublyLinkedList {
   getTail() {
     return this.tail;
   }
+
+  clear() {
+    this.head = null;
+    this.tail = null;
+    this.count = 0;
+  }
+
+  size() {
+    return this.count;
+  }
 }
