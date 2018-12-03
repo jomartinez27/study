@@ -153,4 +153,32 @@ export default class DoublyLinkedList {
       return false;
     }
   }
+
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head;
+      if (index === 0) {
+        this.head = this.head.next;
+        if (this.count === 1) {
+          this.tail = null;
+        } else {
+          this.head.prev = null;
+        }
+      } else if (index === this.count - 1) {
+        current = this.tail;
+        this.tail = current.prev;
+        this.tail.next = null;
+      } else {
+        current = this.getElementAt(index);
+        const previous = current.prev;
+        previous.next = current.next;
+        current.next.prev = previous;
+      }
+      this.count--;
+      return current.element;
+    }
+    return undefined;
+  }
+
+  
 }
