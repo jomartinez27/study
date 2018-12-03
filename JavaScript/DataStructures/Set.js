@@ -46,11 +46,27 @@ function Set() {
 
   //size(): returns the length of items
   this.size = function() {
-
+    // implement size by using a count variable, this way of implementing
+    // works across all browsers
+    let count = 0;
+    for (let key in items) {
+      if (items.hasOwnProperty(key)) {
+        count++;
+      }
+    }
+    return count;
   }
 
   //values(): returns an array of all the values of the set
   this.values = function() {
-
+    // iterate through all the properties of the items object, add them to the array
+    // same as size method
+    let values = [];
+    for (let key in items) {
+      if (items.hasOwnProperty(key)) {
+        values.push(items[key]);
+      }
+    }
+    return values;
   }
 }
