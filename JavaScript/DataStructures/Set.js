@@ -10,7 +10,11 @@ function Set() {
 
   // add(val): adds a new item to the set
   this.add = function(value) {
-
+    if (!this.has(value)) {
+      items[value] = value;
+      return true;
+    }
+    return false;
   }
 
   //delete(value): removes the value from the set
@@ -20,7 +24,10 @@ function Set() {
 
   //has(value): returns true if the value exists in the set and false otherwise
   this.has = function(value) {
-
+    // JavaScript objects have the hasOwnProperty method.
+    // this method returns a Boolean indicating
+    // whether the object has the specified property or not
+    return items.hasOwnProperty(value);
   }
 
   //clear(): removes all the items from the set
@@ -35,6 +42,6 @@ function Set() {
 
   //values(): returns an array of all the values of the set
   this.values = function() {
-    
+
   }
 }
