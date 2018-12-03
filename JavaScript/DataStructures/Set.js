@@ -69,4 +69,23 @@ function Set() {
     }
     return values;
   }
+
+  //union(otherSet): returns a new set with the values from set A and set B
+  this.union = function(otherSet) {
+    // First we create a new set to represent the union of the two sets
+    // Next, we will get all the values form the first set, iterate through
+    // and add all the values to the set, we do the same to otherSet
+    let unionSet = new Set();
+    let values = this.values();
+
+    for (let i = 0; i < values.length; i++) {
+      unionSet.add(values[i]);
+    }
+
+    values = otherSet.values();
+    for (let j = 0; j < values.length; j++) {
+      unionSet.add(values[i]);
+    }
+    return unionSet;
+  }
 }
