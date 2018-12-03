@@ -180,5 +180,24 @@ export default class DoublyLinkedList {
     return undefined;
   }
 
-  
+  getElementAt(element) {
+    let current = this.head;
+    let index = 0;
+    while (current !== null) {
+      if (element === current.element) {
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    return -1;
+  }
+
+  getHead() {
+    return this.head;
+  }
+
+  getTail() {
+    return this.tail;
+  }
 }
