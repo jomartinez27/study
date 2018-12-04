@@ -88,4 +88,51 @@ function Set() {
     }
     return unionSet;
   }
+
+  // intersection(otherSet): returns a new set where the values from set A
+  // and set B are returned in a new set
+  this.intersection = function(otherSet) {
+    // first create a new Set, next iterate through all the values of the current
+    // instance, and verify that the value exists in the otherSet.
+    let intersectedSet = new Set();
+    let values = this.values();
+
+    for (let i = 0; i < values.length; i++) {
+      if (otherSet.has(values[i])) {
+        intersectedSet.add(values[i]);
+      }
+    }
+
+    return intersectedSet;
+  }
+
+  //difference(otherSet): difference between set A and set B
+  this.difference = function(otherSet) {
+    // this method gets all the values that exist in A but not in B
+    let differenceSet = new Set();
+
+    let values = this.values();
+    for (let i = 0; i < values.length; i++) {
+      if (!otherSet.has(values[i])) {
+        differenceSet.add(values[i]);
+      }
+    }
+    return differenceSet;
+  }
+
+  //subset(otherSet): A is a subset (or is included in) B
+  this.subset = function(otherSet) {
+    if (this.size() > otherSet.size()) {
+      return false;
+    } else {
+      let values = this.values();
+      for (let i = 0; i < values.length; i++) {
+        if (!otherSet.has(values[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  }
 }
