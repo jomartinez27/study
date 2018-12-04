@@ -148,6 +148,6 @@ class Set {
       this.items[element] =  element;
       return true;
     }
+    return false;
   }
-  return false;
 }
