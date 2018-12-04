@@ -213,4 +213,16 @@ class Set {
       return true;
     }
   }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  size() {
+    return Object.keys(this.items).length;
+  }
+
+  clear() {
+    this.items = {};
+  }
 }
