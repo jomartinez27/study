@@ -185,4 +185,17 @@ class Set {
     }
     return intersected;
   }
+
+  difference(otherSet) {
+    let differenceSet = new Set();
+
+    let values = this.values();
+    for (let i = 0; i < values.length; i++) {
+      if (!otherSet.has(values[i])) {
+        differenceSet.add(values[i]);
+      }
+    }
+
+    return differenceSet;
+  }
 }
