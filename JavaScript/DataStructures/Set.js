@@ -162,4 +162,8 @@ class Set {
   has(element) {
     return Object.prototype.hasOwnProperty.call(this.items, element);
   }
+
+  values() {
+    return Object.values(this.items);
+  }
 }
