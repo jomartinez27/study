@@ -158,4 +158,8 @@ class Set {
     }
     return false;
   }
+
+  has(element) {
+    return Object.prototype.hasOwnProperty.call(this.items, element);
+  }
 }
