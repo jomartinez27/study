@@ -173,4 +173,16 @@ class Set {
     otherSet.values.forEach(value => union.add(value));
     return unionSet;
   }
+
+  intersection(otherSet) {
+    const intersected = new Set();
+    let values = this.values();
+
+    for (let i = 0; i < values.length; i++) {
+      if (otherSet.has(values[i])) {
+        intersected.add(values[i])
+      }
+    }
+    return intersected;
+  }
 }
