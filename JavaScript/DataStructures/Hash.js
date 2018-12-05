@@ -17,6 +17,8 @@ function HashTable() {
 
   //remove(key): removes the value from the hash table using the key
   this.remove = function(key) {
+    // remove an element from HashTable instance, we simply need to access
+    // the desired positon
     table[loseloseHashCode(key)] = undefined;
   }
 
@@ -35,5 +37,26 @@ function HashTable() {
       hash += hash.charCodeAt(i);
     }
     return hash % 37;
+  }
+
+  //seperate chaining technique to avoid collisions, consists of creating
+  // a linked lsit for each position of the table and storing the elements
+  // in it.
+  var ValuePair = function(key, value) {
+    this.key = key;
+    this.value = value;
+
+    this.toString = function() {
+      return '[' + this.key + ' - ' + this.value + ']';
+    }
+
+    this.put = function(key, value) {
+      var position = loseloseHashCode(key);
+
+      if (table[positon] == undefined) {
+        table[position] = new LinkedList();
+      }
+      table[positon].append(new ValuePair(key, value));
+    }
   }
 }
