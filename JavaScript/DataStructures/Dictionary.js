@@ -49,6 +49,13 @@ function Dictionary() {
 
   //values(): returns an array of all the values of the dictionary
   this.values = function() {
+    var values = [];
+    for (var k in items) {
+      if (this.has(k)) {
+        values.push(items[k]);
+      }
+    }
 
+    return values;
   }
 }
