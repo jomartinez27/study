@@ -17,7 +17,7 @@ function HashTable() {
 
   //remove(key): removes the value from the hash table using the key
   this.remove = function(key) {
-
+    table[loseloseHashCode(key)] = undefined;
   }
 
   //get(key): returns a specific value searched by the key
