@@ -9,16 +9,16 @@ function HashTable() {
   //put(key, value): adds a new item to the hash table
   this.put = function(key, value) {
     //First, for the given key, we need to find a position in the table
-    // using the hash function. Then we add the value parameter to positon.
-    var positon = loseloseHashCode(key);
-    console.log(`${positon} - ${key}`);
-    table[positon] = value;
+    // using the hash function. Then we add the value parameter to position.
+    var position = loseloseHashCode(key);
+    console.log(`${position} - ${key}`);
+    table[position] = value;
   }
 
   //remove(key): removes the value from the hash table using the key
   this.remove = function(key) {
     // remove an element from HashTable instance, we simply need to access
-    // the desired positon
+    // the desired position
     table[loseloseHashCode(key)] = undefined;
   }
 
@@ -53,10 +53,58 @@ function HashTable() {
     this.put = function(key, value) {
       var position = loseloseHashCode(key);
 
-      if (table[positon] == undefined) {
+      if (table[position] == undefined) {
         table[position] = new LinkedList();
       }
-      table[positon].append(new ValuePair(key, value));
+      table[position].append(new ValuePair(key, value));
+    }
+
+    this.get = function(key) {
+      var position = loseloseHashCode(key);
+
+      if (table[position] !== undefined) {
+        var current = table[position].getHead();
+
+        while (current.next) {
+          if (current.element.key === key) {
+            return current.element.value;
+          }
+          current = current.next;
+        }
+        if (current.element.key === key) {
+          return current.element.value;
+        }
+      }
+
+      return undefined;
+    }
+
+    this.remove = function(key) {
+      var position = loseloseHashCode(key);
+
+      if (table[position] !== undefined) {
+        var current = table[position].getHead();
+
+        while (current.next) {
+          if (current.element.key === key) {
+            table[position].remove(current.element);
+            if (table[position].isEmpty()) {
+              table[position] = undefined;
+            }
+            return true;
+          }
+          current = current.next;
+        }
+        if (current.element.key === key) {
+          table[position].remove(current.element);
+          if (table[position].isEmpty()) {
+            table[position] = undefined;
+          }
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 }
