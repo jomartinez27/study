@@ -39,7 +39,7 @@ function Dictionary() {
 
   //size(): returns how many elements the dictionary contains
   this.size = function() {
-
+    return Object.keys(items).length;
   }
 
   //keys(): returns an array of all the keys in the dictionary
