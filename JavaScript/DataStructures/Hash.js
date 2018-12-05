@@ -106,5 +106,24 @@ function HashTable() {
 
       return false;
     }
+
+    //another technique of collision resolution is linear probing, when we try
+    // to add a new element, if the position index is already occupied, then we
+    // will try index+1, if index+1 is occupied, then we try index+2 and so on
+
+    this.put = function(key, value) {
+      var position = loseloseHashCode(key);
+
+      if (table[position] == undefined) {
+        table[position] = new ValuePair(key, value);
+      } else {
+        var index = ++position;
+        while (table[index] != undefined) {
+          index++;
+        }
+        table[index] = new ValuePair(key, value);
+      }
+    }
   }
+
 }
