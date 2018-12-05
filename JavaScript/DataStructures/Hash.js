@@ -153,7 +153,26 @@ class HashTable {
     this.table = {};
   }
 
+  toStringFn(item) {
+    if (item === null) {
+      return "NULL";
+    } else if (item === undefined) {
+      return "UNDEFINED";
+    } else if (typeof item === "string" || item instanceof String) {
+      return `${item}`;
+    }
+    return item.toString();
+  }
+
   loseloseHashCode(key) {
-    
+    if (typeof key === 'number') {
+      return key;
+    }
+    const tableKey = this.toStringFn(key);
+    let hash = 0;
+    for (let i = 0; i < tableKey.length; i++) {
+      hash += tableKey.charCodeAt(i);
+    }
+    return hash % 37;
   }
 }
