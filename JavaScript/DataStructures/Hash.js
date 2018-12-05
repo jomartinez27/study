@@ -18,6 +18,18 @@ function HashTable() {
 
   //get(key): returns a specific value searched by the key
   this.get = function(key) {
-    
+
+  }
+
+  var loseloseHashCode = function(key) {
+    //first, we need a variable to store the sum. Then, we will iterate
+    // through key, and add the ASCII value of the corresponding character
+    // value from the ASCII table to the hash variable (we use charCodeAt)
+    // finally we will return this hash value
+    var hash = 0;
+    for (var i = 0; i < key.length; i++) {
+      hash += hash.charCodeAt(i);
+    }
+    return hash % 37;
   }
 }
