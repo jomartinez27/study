@@ -147,6 +147,8 @@
 //
 // }
 
+import {ValuePair} from './ValuePair.js';
+
 //es6
 class HashTable {
   constructor() {
@@ -174,5 +176,18 @@ class HashTable {
       hash += tableKey.charCodeAt(i);
     }
     return hash % 37;
+  }
+
+  hashCode(key) {
+    return this.loseloseHashCode(key);
+  }
+
+  put(key, value) {
+    if (key != null && value != null) {
+      const position = this.hashCode(key);
+      this.table[position] = new ValuePair(key, value);
+      return true;
+    }
+    return false;
   }
 }
