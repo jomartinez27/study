@@ -8,7 +8,7 @@ function Dictionary() {
 
   //set(key, value): adds a new item to the dictionary
   this.set = function(key, value) {
-
+    items[key] = value;
   }
 
   //delete(key): removes the value from the dictionary using the key
@@ -17,12 +17,12 @@ function Dictionary() {
   }
 
   //has(key): returns true if the key exists in the dictionary and false otherwise
-  this.has(key) = function(key) {
-
+  this.has = function(key) {
+    return key in items;
   }
 
   //get(key): returns a specific value searched by the key
-  this.get(key) = function(key) {
+  this.get = function(key) {
 
   }
 
@@ -43,6 +43,6 @@ function Dictionary() {
 
   //values(): returns an array of all the values of the dictionary
   this.values = function() {
-    
+
   }
 }
