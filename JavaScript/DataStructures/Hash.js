@@ -124,6 +124,25 @@ function HashTable() {
         table[index] = new ValuePair(key, value);
       }
     }
+
+    this.get = function(key) {
+      var position = loseloseHashCode(key);
+
+      if (table[position] !== undefined) {
+        if (table[position].key === key) {
+          return table[position].value;
+        } else {
+          var index = ++position;
+          while(table[index] === undefined || table[index].key !== key) {
+            index++;
+          }
+          if (table[index].key === key) {
+            return table[index].value;
+          }
+        }
+      }
+      return undefined;
+    }
   }
 
 }
