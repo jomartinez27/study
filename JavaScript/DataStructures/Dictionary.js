@@ -27,7 +27,9 @@ function Dictionary() {
 
   //get(key): returns a specific value searched by the key
   this.get = function(key) {
-
+    // get method will first verify that the value that we would like to retrieve
+    // exists, and if it does we return the value, else we return undefined
+    return this.has(key) ? items[key] : undefined;
   }
 
   //clear(): removes all the items from the dictionary
