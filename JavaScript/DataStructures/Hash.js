@@ -8,7 +8,11 @@ function HashTable() {
 
   //put(key, value): adds a new item to the hash table
   this.put = function(key, value) {
-
+    //First, for the given key, we need to find a position in the table
+    // using the hash function. Then we add the value parameter to positon.
+    var positon = loseloseHashCode(key);
+    console.log(`${positon} - ${key}`);
+    table[positon] = value;
   }
 
   //remove(key): removes the value from the hash table using the key
@@ -18,7 +22,7 @@ function HashTable() {
 
   //get(key): returns a specific value searched by the key
   this.get = function(key) {
-
+    return table[loseloseHashCode(key)];
   }
 
   var loseloseHashCode = function(key) {
