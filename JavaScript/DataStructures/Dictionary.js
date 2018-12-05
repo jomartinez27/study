@@ -13,7 +13,11 @@ function Dictionary() {
 
   //delete(key): removes the value from the dictionary using the key
   this.delete = function(key) {
-
+    if (this.has(key)) {
+      delete items[key];
+      return true;
+    }
+    return false;
   }
 
   //has(key): returns true if the key exists in the dictionary and false otherwise
