@@ -34,7 +34,7 @@ function Dictionary() {
 
   //clear(): removes all the items from the dictionary
   this.clear = function() {
-
+    items = {};
   }
 
   //size(): returns how many elements the dictionary contains
@@ -44,7 +44,11 @@ function Dictionary() {
 
   //keys(): returns an array of all the keys in the dictionary
   this.keys = function() {
-
+    //keys metod returns all the keys used to identify a value in the
+    // dictionary class. To retrieve all the keys from JavaScript, object
+    // we can use the keys method from the Object class by passing our
+    // object as a parameter
+    return Object.keys(items);
   }
 
   //values(): returns an array of all the values of the dictionary
