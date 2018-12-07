@@ -205,4 +205,12 @@ class HashTable {
     }
     return false;
   }
+
+  getTable() {
+    return this.table;
+  }
+
+  isEmpty() {
+    return this.size() == 0;
+  }
 }
