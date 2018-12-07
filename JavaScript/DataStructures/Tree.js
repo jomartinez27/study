@@ -44,6 +44,23 @@ function BinarySearchTree() {
     }
   }
 
+  //insertNode(node, newNode): recursive helper function to handle insert function
+  this.insertNode = function(node, newNode) {
+    if (newNode.key < node.key) {
+      if (node.left ==== null) {
+        node.left = newNode;
+      } else {
+        insertNode(node.left, newNode);
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        insertNode(node.right, newNode);
+      }
+    }
+  }
+
   //search(key): searches for the key in the tree and returns true if it exists
   this.search = function(key) {
 
