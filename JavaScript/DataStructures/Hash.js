@@ -195,4 +195,14 @@ class HashTable {
     const valuePair = this.table[this.hashCode(key)];
     return valuePair == null ? undefined : valuePair.value;
   }
+
+  remove(key) {
+    const hash = this.hashCode(key);
+    const valuePair = this.table[hash];
+    if (valuePair != null) {
+      delete this.table[hash];
+      return true;
+    }
+    return false;
+  }
 }
