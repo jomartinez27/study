@@ -227,9 +227,9 @@ class HashTable {
       return '';
     }
     const keys = Object.keys(this.table);
-    let objString = `${keys[0]} => ${this.table[keys[0]].toString()}`;
+    let objString = `{${keys[0]} => ${this.table[keys[0]].toString()}}`;
     for (let i = 1; i < keys.length; i++) {
-      objString = `${objString},${keys[i]} => ${this.table[keys[i]].toString()}`;
+      objString = `${objString},{${keys[i]} => ${this.table[keys[i]].toString()}}`;
     }
     return objString;
   }
