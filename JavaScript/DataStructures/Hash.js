@@ -213,4 +213,24 @@ class HashTable {
   isEmpty() {
     return this.size() == 0;
   }
+
+  size() {
+    return Object.keys()
+  }
+
+  clear() {
+    this.table = {};
+  }
+
+  toString() {
+    if (this.isEmpty()) {
+      return '';
+    }
+    const keys = Object.keys(this.table);
+    let objString = `${keys[0]} => ${this.table[keys[0]].toString()}`;
+    for (let i = 1; i < keys.length; i++) {
+      objString = `${objString},${keys[i]} => ${this.table[keys[i]].toString()}`;
+    }
+    return objString;
+  }
 }
