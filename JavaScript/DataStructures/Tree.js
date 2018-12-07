@@ -30,7 +30,18 @@ function BinarySearchTree() {
 
   //insert(key): inserts a new key in the tree
   this.insert = function(key) {
+    // to insert new node, there are three steps; first is to create the
+    // instance of the Node class that will represent the new node.
+    // second: we need to verify that the insertion is a special case,
+    // if the node is the first node in the tree, if it is we set the root to the node
+    // third, is to add a node to a different position than the root
+    var newNode = new Node(key);
 
+    if (root === null) {
+      root = newNode;
+    } else {
+      insertNode(root, newNode);
+    }
   }
 
   //search(key): searches for the key in the tree and returns true if it exists
