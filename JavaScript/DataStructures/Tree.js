@@ -77,8 +77,18 @@ function BinarySearchTree() {
   }
 
   // inOrderTraverse(): visits all nodes of the tree using in-order traverse
-  this.inOrderTraverse = function() {
+  this.inOrderTraverse = function(callback) {
+    // inOrderTraverse method receives a "callback" function as a parameter
+    // This function can be used to perform the action we want to execute
+    // when the node is visited
+  }
 
+  var inOrderTraverseNode = function(node, callback) {
+    if (node !== null) {
+      inOrderTraverseNode(node.left, callback);
+      callback(node.key);
+      inOrderTraverseNode(node.right, callback);
+    }
   }
 
   //preOrderTraverse(): visits all nodes of the tree using pre-order traverse
