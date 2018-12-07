@@ -147,7 +147,7 @@
 //
 // }
 
-import {ValuePair} from './ValuePair.js';
+import { valuePair } from './ValuePair.js';
 
 //es6
 class HashTable {
@@ -189,5 +189,10 @@ class HashTable {
       return true;
     }
     return false;
+  }
+
+  get(key) {
+    const valuePair = this.table[this.hashCode(key)];
+    return valuePair == null ? undefined : valuePair.value;
   }
 }
