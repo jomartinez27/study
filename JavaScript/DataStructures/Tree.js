@@ -27,4 +27,39 @@ function BinarySearchTree() {
   }
 
   var root = null;
+
+  //insert(key): inserts a new key in the tree
+  this.insert = function(key) {
+
+  }
+
+  //search(key): searches for the key in the tree and returns true if it exists
+  this.search = function(key) {
+
+  }
+
+  // inOrderTraverse(): visits all nodes of the tree using in-order traverse
+  this.inOrderTraverse = function() {
+
+  }
+
+  //preOrderTraverse(): visits all nodes of the tree using pre-order traverse
+  this.preOrderTraverse = function() {
+
+  }
+
+  //min(): returns the minimum value/key in the tree
+  this.min = function() {
+
+  }
+
+  //max(): returns the maximum value/key in the tree
+  this.max = function() {
+
+  }
+
+  //remove(key): removes the key from the tree
+  this.remove = function() {
+
+  }
 }
