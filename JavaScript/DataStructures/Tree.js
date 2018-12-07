@@ -46,6 +46,16 @@ function BinarySearchTree() {
 
   //insertNode(node, newNode): recursive helper function to handle insert function
   this.insertNode = function(node, newNode) {
+    // * if the tree is not empty, we need to find a place to add a new node
+    // for this, we will call the insertNode function by passing the root and the node as parameters
+    // * if the node's key is less than the current node key (in this case, it is the root)
+    // then we need to check the left child of the node. If there is no left node
+    // then we will insert the new node there. If not, we need to descend a level in the
+    // tree by calling insertNode recursively. In this case, the node we will compare
+    // next time will be the left child of the current node.
+    // * If the node's key is greater than the current node key and there is no right
+    // child, then we will insert the new node there, if not we will also
+    // need to call the insertNode function recursively
     if (newNode.key < node.key) {
       if (node.left ==== null) {
         node.left = newNode;
