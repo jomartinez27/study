@@ -205,6 +205,15 @@ function BinarySearchTree() {
     // will receive this value as well. This is why we are returnning the node
     // values as the return function.
 
+    // Second scenario, a node that has a left or right child. In this case
+    // we need to skip this node and assign the parent pointer to the child node
+    //
+    // If the node does not have a left child (line {12}), it means it has a right
+    // child, so we will change the reference of the node to its right child (line {13})
+    // and return the updated node (line {14}). We will do the same if the node
+    // does not have the right child (line {15}); we will update the node reference
+    // to its left child (line {16}) and return the updated value (line {17})
+
     if (node === null) { // {2}
       return null;
     }
