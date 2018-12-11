@@ -176,7 +176,55 @@ function BinarySearchTree() {
   }
 
   //remove(key): removes the key from the tree
-  this.remove = function() {
+  this.remove = function(key) {
+    root = removeNode(root, key); // {1}
+  }
 
+  var removeNode = function(node, key) {
+    // As a stop point we have line {2}. If the node we are analyzing is null, it means
+    // the key does not exist in the tree, and for this reason, we will return null
+    //
+    // Then, the first thing we need to do is to find the node in the tree.
+    // So, if the key we are looking for has a lower value than the current node (line {3})
+    // then we will go to the next node at the left-hand side edge of the tree (line {4})
+    // If the key is greater than the current node (line {6}), then we will go to
+    // the next node at the right-hand side edge of the tree (line {7})
+    //
+    // If we find the key we are looking for (key is equal to node.key), then
+    // we will have three different scenarious to handle
+
+    if (node === null) { // {2}
+      return null;
+    }
+    if (key < node.key) { // {3}
+      node.left = removeNode(node.left, key); // {4}
+      return node; // {5}
+    } else if (key > node.key) { // {6}
+      node.right = removeNode(node.right, key); // {7}
+      return node; // {8}
+    } else {
+      if (node.left === null && node.right === null) { // {9}
+        node = null; // {10}
+        return node; // {11}
+      }
+      if (node.left === null) { // {12}
+        node = node.right // {13}
+        return node; // {14}
+      } else if (node.right === null) { // {15}
+        node = node.left; // {16}
+        return node; // {17}
+      }
+      var aux = findMinNode(node.right); // {18}
+      node.key =  aux.key // {19}
+      node.right = removeNode(node.right, aux.key); // {20}
+      return node; // {21}
+    }
+  }
+
+  var findMinNode = function(node) {
+    while (node && node.left !== null) {
+      node = node.left;
+    }
+    return node;
   }
 }
