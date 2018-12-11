@@ -126,7 +126,19 @@ function BinarySearchTree() {
 
   //min(): returns the minimum value/key in the tree
   this.min = function() {
+    return minNode(root)
+  }
 
+  var minNode = function(node) {
+    // we traverse the left edge of the tree until we find the node at the
+    // highest level of the tree (leftmost end)
+    if (node) {
+      while (node && node.left !== null) {
+        node = node.left;
+      }
+      return node.key
+    }
+    return null;
   }
 
   //max(): returns the maximum value/key in the tree
