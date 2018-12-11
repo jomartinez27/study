@@ -214,6 +214,19 @@ function BinarySearchTree() {
     // does not have the right child (line {15}); we will update the node reference
     // to its left child (line {16}) and return the updated value (line {17})
 
+    // The third scenario, the node we are trying to remove has two children
+    // To remove a node with children, there are 4 steps that need to be performed
+    // 1. Once we find the node we want to remove, we need to find the minimum
+    //    node from its right-hand side edge subtree (line {18})
+    // 2. Then we will update the value of the node with the key of the
+    //    minimum node from its right-hand side subtree (line {19}). With
+    //    this action, we are replacing the key of the node, which means it was removed
+    // 3. Now we have two nodes in the tree with the same key, and this cannot
+    //    happen. We need to remove the minimum node from the right subtree as we
+    //    moved it to the place of the removed node (line {20}).
+    // 4. Finally we will return the updated node reference to its parent (line {21})
+
+
     if (node === null) { // {2}
       return null;
     }
