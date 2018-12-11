@@ -112,6 +112,18 @@ function BinarySearchTree() {
     }
   }
 
+  this.postOrderTraverse = function(callback) {
+    postOrderTraverseNode(root, callback);
+  }
+
+  var postOrderTraverseNode = function(node, callback) {
+    if (node !== null) {
+      postOrderTraverseNode(node.left, callback);
+      postOrderTraverseNode(node.right, callback);
+      callback(node.key)
+    }
+  }
+
   //min(): returns the minimum value/key in the tree
   this.min = function() {
 
