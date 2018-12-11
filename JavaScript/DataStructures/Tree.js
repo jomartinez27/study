@@ -143,7 +143,19 @@ function BinarySearchTree() {
 
   //max(): returns the maximum value/key in the tree
   this.max = function() {
+    return maxNode(root);
+  }
 
+  var maxNode = function(node) {
+    // similar to minNode function, we traverse to the right until we find
+    // the last node at the right
+    if (node) {
+      while (node && node.right !== null) {
+        node = node.right;
+      }
+      return node.key;
+    }
+    return null;
   }
 
   //remove(key): removes the key from the tree
