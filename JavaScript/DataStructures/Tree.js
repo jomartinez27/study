@@ -81,9 +81,14 @@ function BinarySearchTree() {
     // inOrderTraverse method receives a "callback" function as a parameter
     // This function can be used to perform the action we want to execute
     // when the node is visited
+    inOrderTraverseNode(root, callback);
   }
 
   var inOrderTraverseNode = function(node, callback) {
+    // to traverse a tree using the in-order method, we need to first check
+    // wheter the tree node that was passed is null, which is the base case
+    // next we will visit the left node by calling the same function recursively
+    // Then we will visit the root node, and then we will visit the right node
     if (node !== null) {
       inOrderTraverseNode(node.left, callback);
       callback(node.key);
@@ -92,8 +97,19 @@ function BinarySearchTree() {
   }
 
   //preOrderTraverse(): visits all nodes of the tree using pre-order traverse
-  this.preOrderTraverse = function() {
+  this.preOrderTraverse = function(callback) {
+    preOrderTraverseNode(root, callback);
+  }
 
+  var preOrderTraverseNode = function(node, callback) {
+    // The difference between the in-order and pre-order traversals is that
+    // the pre-order one visits the root node first, then the left node, then the right
+    // while in-order executes lines 2, 1, 3
+    if (node !== null) {
+      callback(node.key); // 1
+      preOrderTraverseNode(node.left, callback); // 2
+      preOrderTraverseNode(node.right, callback); // 3
+    }
   }
 
   //min(): returns the minimum value/key in the tree
