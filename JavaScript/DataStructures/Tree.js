@@ -193,6 +193,18 @@ function BinarySearchTree() {
     // If we find the key we are looking for (key is equal to node.key), then
     // we will have three different scenarious to handle
 
+    // The first scenario is a leaf node that does not have a left, or right
+    // child (line {9}). In this case, all we have to do is get rid of
+    // this node by assigning null to it (line {10}). However it is not
+    // enough to assign null to the node, we also need to take care of the
+    // pointers. In this case, the node doest not have any children, but it
+    // does have a parent node. We need to assign null to its parent node,
+    // and this can be done by returning null (line {11}).
+    //
+    // As the node already has the value null, the parent pointer to the node
+    // will receive this value as well. This is why we are returnning the node
+    // values as the return function.
+
     if (node === null) { // {2}
       return null;
     }
