@@ -158,6 +158,23 @@ function BinarySearchTree() {
     return null;
   }
 
+  this.search = function(key) {
+    return searchNode(root, key);
+  }
+
+  var searchNode = function(node, key) {
+    if (node === null) {
+      return false;
+    }
+    if (key < node.key) {
+      return searchNode(node.left, key);
+    } else if (key > node.key) {
+      return searchNode(node.right, key);
+    } else {
+      return true;
+    }
+  }
+
   //remove(key): removes the key from the tree
   this.remove = function() {
 
