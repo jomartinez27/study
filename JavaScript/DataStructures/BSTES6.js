@@ -104,4 +104,16 @@ class BinaryTree {
     }
     return current;
   }
+
+  max() {
+    return this.maxNode(this.root);
+  }
+
+  maxNode(node) {
+    let current = node;
+    while (current != null && current.right != null) {
+      current = current.right;
+    }
+    return current;
+  }
 }
