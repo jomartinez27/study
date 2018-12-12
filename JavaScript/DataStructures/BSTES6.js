@@ -68,4 +68,16 @@ class BinaryTree {
       this.inOrderTraverseNode(node.right, callback);
     }
   }
+
+  preOrderTraverse(callback) {
+    this.preOrderTraverseNode(this.root, callback);
+  }
+
+  preOrderTraverseNode(node, callback) {
+    if (node != null) {
+      callback(node.key);
+      this.preOrderTraverseNode(node.left, callback);
+      this.preOrderTraverseNode(node.right, callback);
+    }
+  }
 }
