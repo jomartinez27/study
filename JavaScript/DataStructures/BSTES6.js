@@ -24,7 +24,7 @@ class BinaryTree {
     let newNode = new Node(key);
     if (newNode.key < node.key) {
       if (node.left === null) {
-        node.lefft = newNode;
+        node.left = newNode;
       } else {
         insertNode(node.left, newNode);
       }
@@ -41,7 +41,19 @@ class BinaryTree {
     return this.root;
   }
 
-  searchNode() {
-    
+  search(key) {
+    return this.searchNode(this.root, key);
+  }
+
+  searchNode(node, key) {
+    if (node === null) {
+      return false;
+    }
+    if (key < node.key) {
+      return this.searchNode(node.left, key);
+    } else if (key > node.key) {
+      return this.searchNode(node.right, key);
+    }
+    return true;
   }
 }
