@@ -28,13 +28,13 @@ class BinaryTree {
       if (node.left === null) {
         node.left = newNode;
       } else {
-        insertNode(node.left, newNode);
+        this.insertNode(node.left, newNode);
       }
     } else {
       if (node.right === null) {
         node.right = newNode;
       } else {
-        insertNode(node.right, newNode)
+        this.insertNode(node.right, newNode)
       }
     }
   }
@@ -162,17 +162,27 @@ class BinaryTree {
     return node;
   }
 
-  BreadthFirstSearch(root) {
+  BreadthFirstSearch() {
     let q = new Queue();
-    q.enqueue(root);
+    q.enqueue(this.root);
     while (q.size > 0) {
       let current = q.dequeue();
       q.enqueue(current.left);
       q.enqueue(current.right);
     }
+    return q;
   }
 
   DepthFirstSearch(root) {
 
   }
 }
+
+let tree = new BinaryTree();
+tree.insert(9);
+tree.insert(1);
+tree.insert(10);
+tree.insert(12);
+tree.insert(4);
+tree.insert(3);
+console.log(tree.BreadthFirstSearch());
