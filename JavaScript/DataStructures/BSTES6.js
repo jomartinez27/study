@@ -1,3 +1,5 @@
+import Stack from './Stack.js'
+import Queue from './Queue.js'
 // es6 bst
 class Node {
   constructor(key) {
@@ -158,5 +160,19 @@ class BinaryTree {
     node.key = aux.key;
     node.right = this.removeNode(node.right, aux.key);
     return node;
+  }
+
+  BreadthFirstSearch(root) {
+    let q = new Queue();
+    q.enqueue(root);
+    while (q.size > 0) {
+      let current = q.dequeue();
+      q.enqueue(current.left);
+      q.enqueue(current.right);
+    }
+  }
+
+  DepthFirstSearch(root) {
+
   }
 }
