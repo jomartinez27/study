@@ -69,9 +69,9 @@ export default class Stack {
       return undefined;
     }
     this.count--;
-    let el = this.items[this.count - 1];
-    delete el;
-    return el;
+    const result = this.items[this.count];
+    delete this.items[this.count];
+    return result;
   }
 
   peek() {

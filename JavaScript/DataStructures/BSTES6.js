@@ -180,11 +180,17 @@ class BinaryTree {
 
   DepthFirstSearch() {
     let s = new Stack();
-    s.enqueue(this.root);
+    s.push(this.root);
     while (s.size() > 0) {
+      debugger;
       let current = s.pop();
-      s.push(current.left);
-      s.push(current.right);
+      if (current.left) {
+        s.push(current.left);
+      }
+
+      if (current.right) {
+        s.push(current.right);
+      }
     }
     return s;
   }
@@ -198,3 +204,4 @@ tree.insert(12);
 tree.insert(4);
 tree.insert(3);
 tree.BreadthFirstSearch();
+tree.DepthFirstSearch();
