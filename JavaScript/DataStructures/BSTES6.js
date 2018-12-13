@@ -165,16 +165,28 @@ class BinaryTree {
   BreadthFirstSearch() {
     let q = new Queue();
     q.enqueue(this.root);
-    while (q.size > 0) {
+    while (q.size() > 0) {
       let current = q.dequeue();
-      q.enqueue(current.left);
-      q.enqueue(current.right);
+      if (current.left) {
+        q.enqueue(current.left)
+      }
+
+      if (current.right) {
+        q.enqueue(current.right);
+      }
     }
-    return q;
+    return null;
   }
 
-  DepthFirstSearch(root) {
-
+  DepthFirstSearch() {
+    let s = new Stack();
+    s.enqueue(this.root);
+    while (s.size() > 0) {
+      let current = s.pop();
+      s.push(current.left);
+      s.push(current.right);
+    }
+    return s;
   }
 }
 
@@ -185,4 +197,4 @@ tree.insert(10);
 tree.insert(12);
 tree.insert(4);
 tree.insert(3);
-console.log(tree.BreadthFirstSearch());
+tree.BreadthFirstSearch();
