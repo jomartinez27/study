@@ -32,3 +32,10 @@ const iterInorderTraversal = (root) {
   }
   return list;
 }
+
+// Time complexity: O(n)
+// this is an iterative approach which is performed on each node in the Tree
+
+// Space complexity: O(log N)
+// The stack needs to store maximum of log N elements(all its ancestors)
+// at any given time
