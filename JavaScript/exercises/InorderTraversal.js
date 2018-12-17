@@ -10,3 +10,25 @@
 // Approach: We need to use a Stack to store all the root elements so that
 // the left subtrees can be processed. Once the left subtree is processed,
 // the root value is added to the list and process is repeated for the right
+import { Node, BinarySearchTree } from '../DataStructures/BSTES.js';
+import Stack from '../DataStructures/Stack.js';
+
+const iterInorderTraversal = (root) {
+  let list = [];
+  let stack = Stack.new();
+  while (root !== null || !stack.isEmpty()) {
+    // if the root is not null, push it onto the stack and continue with left
+    if (root != null) {
+      stack.push(root);
+      root = root.left
+    }
+
+    // remove from the stack and process the node value
+    root = stack.pop();
+    list.push(root.val);
+
+    // continue with the right node
+    root = root.right;
+  }
+  return list;
+}

@@ -1,7 +1,7 @@
 import Stack from './Stack.js'
 import Queue from './Queue.js'
 // es6 bst
-class Node {
+export class Node {
   constructor(key) {
     this.key = key;
     this.left = null;
@@ -9,7 +9,7 @@ class Node {
   }
 }
 
-class BinaryTree {
+export class BinaryTree {
   constructor() {
     this.root = null;
   }
