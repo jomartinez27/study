@@ -46,7 +46,15 @@ class AVLTree extends BinaryTree {
     } else if (element > node.key) {
       //veryify if balancing is needed {2}
     }
+    return node;
   }
 
-  return node;
+  heightNode(node) {
+    if (node === null) {
+      return -1;
+    } else {
+      return Math.max(heightNode(node.left), heightNode(node.right)) + 1;
+    }
+  }
+
 }
