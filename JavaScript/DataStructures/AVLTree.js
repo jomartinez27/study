@@ -92,4 +92,12 @@ class AVLTree extends BinaryTree {
       return Math.max(heightNode(node.left), heightNode(node.right)) + 1;
     }
   }
+
+  rotationRR(node) {
+    var temp = node.right; // {1}
+
+    node.right = temp.left; // {2}
+    temp.left = node; // {3}
+    return temp;
+  }
 }
