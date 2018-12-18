@@ -23,24 +23,6 @@
 // - Left-Right (LR): This is a double rotation to the right
 // - Right-Left (RL): This is a double rotation to the left
 
-// RR:
-//  50                        70
-// /Y \R                      /  \
-// 30  70         =>        50   80
-//    /X \R        =>       /  \    \
-//  60    80              30   60   90
-//       Z  \
-//           90
-
-// Suppose node 90 was the last one inserted in the AVL tree. This would make
-// the tree unbalanced, so we would need to balance it. These are the steps:
-// 1) Node X, which is the middle of the tree nodes invloded in the balancing
-// (X, Y, Z), will take place of the node Y, which has a balance factor of -2
-// 2) Node X, the right-hand side subtree, will not be changed
-// 3) Node X, the left-hand side subtree (Node Z), will be placed as the right-hand
-// side subtree of Node Y
-// 4) Node X, the left-hand side child, will reference node Y
-
 import BinaryTree from './BSTES6.js';
 
 class AVLTree extends BinaryTree {
@@ -93,11 +75,52 @@ class AVLTree extends BinaryTree {
     }
   }
 
+  // RR:
+  //  50                        70
+  // /Y \R                      /  \
+  // 30  70         =>        50   80
+  //    /X \R        =>       /  \    \
+  //  60    80              30   60   90
+  //       Z  \
+  //           90
+
+  // Suppose node 90 was the last one inserted in the AVL tree. This would make
+  // the tree unbalanced, so we would need to balance it. These are the steps:
+  // 1) Node X, which is the middle of the tree nodes invloded in the balancing
+  // (X, Y, Z), will take place of the node Y, which has a balance factor of -2
+  // 2) Node X, the right-hand side subtree, will not be changed
+  // 3) Node X, the left-hand side subtree (Node Z), will be placed as the right-hand
+  // side subtree of Node Y
+  // 4) Node X, the left-hand side child, will reference node Y
+
   rotationRR(node) {
     var temp = node.right; // {1}
-
     node.right = temp.left; // {2}
     temp.left = node; // {3}
+    return temp;
+  }
+
+  //LL:
+  //       50                 30
+  //    L / Y \              /  \
+  //     30   70            10   50
+  //  L / X \              /    /  \
+  //   10    60           5    40   70
+  //   / Z
+  //  5
+
+  // Suppose node 5 was the last one inserted, This would make the tree
+  // unbalanced. We need to balance it, these are the steps:
+  // 1) Node X, which is in the middle of the three nodes involved in the
+  // balancing (X, Y, Z) will take the place of node Y
+  // 2) Node X, the left-hand side subtree, will not be changed
+  // 3) Node X, the right-hand side subtree (node Z) will be placed as
+  // the left-hand side subtree of node Y
+  // 4) Node X, the right-hand side child, will reference node Y
+  roationLL(node) {
+    var temp = node.left;
+    node.left = temp.right;
+    temp.right = node;
     return temp;
   }
 }
