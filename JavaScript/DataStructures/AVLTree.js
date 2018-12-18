@@ -14,6 +14,15 @@
 // means the tree will try to become a complete tree whenever possible while
 // adding or removing a node
 
+// When inserting nodes to an AVL tree, there are two balancing processes
+// that can be used: simple rotation or double rotation. Between simple rotation
+// and double rotation, there are four scenarios
+
+// - Right-Right (RR): This is a single rotation to the left
+// - Left-Left (LL): This is a single rotation to the right
+// - Left-Right (LR): This is a double rotation to the right
+// - Right-Left (RL): This is a double rotation to the left
+
 import BinaryTree from './BSTES6.js';
 
 class AVLTree extends BinaryTree {

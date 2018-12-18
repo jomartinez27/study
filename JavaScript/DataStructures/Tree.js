@@ -191,7 +191,7 @@ function BinarySearchTree() {
     // the next node at the right-hand side edge of the tree (line {7})
     //
     // If we find the key we are looking for (key is equal to node.key), then
-    // we will have three different scenarious to handle
+    // we will have three different scenarios to handle
 
     // The first scenario is a leaf node that does not have a left, or right
     // child (line {9}). In this case, all we have to do is get rid of
