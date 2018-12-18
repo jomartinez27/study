@@ -50,11 +50,13 @@ class AVLTree extends BinaryTree {
   }
 
   heightNode(node) {
+    // If we are inserting a new node in a left-hand side subtree, we will
+    // calculate the height, and if it is larger than 1, then we will balance
+    // the left-hand side subtree
     if (node === null) {
       return -1;
     } else {
       return Math.max(heightNode(node.left), heightNode(node.right)) + 1;
     }
   }
-
 }
