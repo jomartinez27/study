@@ -13,3 +13,40 @@
 // or right subtree of any node (and any level) differs by 1 at most. This
 // means the tree will try to become a complete tree whenever possible while
 // adding or removing a node
+
+import BinaryTree from './BSTES6.js';
+
+class AVLTree extends BinaryTree {
+  constructor() {
+
+  }
+
+  //insertNode(node, element)
+  insertNode(node, element) {
+    // inserting and removing nodes in an AVL tree works the same way
+    // as in BST. However, the difference in the AVL tree is that we will need
+    // to verify its balance factor, and if needed, we will apply the logic
+    // to self-balance the tree
+
+    // Whenever we insert a new node, we need to check whether the tree needs
+    // to be balanced (line {1}, and {2})
+
+    // calculating the balance factor:
+    // We need to calculate the difference between the height of the right-hand
+    // side subtree (hr) and the left-hand side subtree (hl). The result of
+    // The result of hr - hl needs to be 0, 1, or -1. If the result is different
+    // from these values, it means the tree needs to be balanced
+    if (node === null) {
+      node = new Node (element);
+    } else if (element < node.key) {
+      node.left = insertNode(node.left, element);
+      if (node.left !== null) {
+        // verify if balancing is needed {1}
+      }
+    } else if (element > node.key) {
+      //veryify if balancing is needed {2}
+    }
+  }
+
+  return node;
+}
