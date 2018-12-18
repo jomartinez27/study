@@ -42,9 +42,15 @@ class AVLTree extends BinaryTree {
       node.left = insertNode(node.left, element);
       if (node.left !== null) {
         // verify if balancing is needed {1}
+        if ((heightNode(node.left) - heightNode(node.right)) > 1) {
+          // do rotations {3}
+        }
       }
     } else if (element > node.key) {
       //veryify if balancing is needed {2}
+      if ((heightNode(node.right) - heightNode(node.left)) > 1) {
+        // do rotations {4}
+      }
     }
     return node;
   }
