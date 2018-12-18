@@ -25,12 +25,21 @@
 
 // RR:
 //  50                        70
-// /  \                      /  \
+// /Y \R                      /  \
 // 30  70         =>        50   80
-//    /  \        =>       /  \    \
+//    /X \R        =>       /  \    \
 //  60    80              30   60   90
-//          \
+//       Z  \
 //           90
+
+// Suppose node 90 was the last one inserted in the AVL tree. This would make
+// the tree unbalanced, so we would need to balance it. These are the steps:
+// 1) Node X, which is the middle of the tree nodes invloded in the balancing
+// (X, Y, Z), will take place of the node Y, which has a balance factor of -2
+// 2) Node X, the right-hand side subtree, will not be changed
+// 3) Node X, the left-hand side subtree (Node Z), will be placed as the right-hand
+// side subtree of Node Y
+// 4) Node X, the left-hand side child, will reference node Y
 
 import BinaryTree from './BSTES6.js';
 
