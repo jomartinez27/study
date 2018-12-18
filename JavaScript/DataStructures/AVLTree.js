@@ -23,6 +23,15 @@
 // - Left-Right (LR): This is a double rotation to the right
 // - Right-Left (RL): This is a double rotation to the left
 
+// RR:
+//  50                        70
+// /  \                      /  \
+// 30  70         =>        50   80
+//    /  \        =>       /  \    \
+//  60    80              30   60   90
+//          \
+//           90
+
 import BinaryTree from './BSTES6.js';
 
 class AVLTree extends BinaryTree {
