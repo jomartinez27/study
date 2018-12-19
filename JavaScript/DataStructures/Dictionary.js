@@ -67,3 +67,5 @@ function Dictionary() {
     return items;
   }
 }
+
+export default Dictionary;
