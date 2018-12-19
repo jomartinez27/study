@@ -34,3 +34,17 @@
 
 // A graph is acyclic if it does not have cycles. A graph is connected if there
 // is a path between every pair of vertices
+
+// Graphs can be "unidirected" (where edges do not have a direction) or
+// "directed" (digraph) where edges have a direction
+// Diagram of a directed
+//                A
+//              / | \
+//             v  v v
+//            B   C <-> D
+//           / \    \ / \
+//          v  v    vv   v
+//          E   F    G   H
+//          |
+//          v
+//          I
