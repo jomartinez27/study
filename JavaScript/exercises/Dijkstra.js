@@ -65,3 +65,14 @@ Graph.prototype.dijkstra = function(src) {
 
 // To calculate the minDistance between, we will search for the minimum
 // value in the dist array, and return the array index that contains the minimum value
+var minDistance = function(dist, visited) {
+  var min = INF, minIndex = -1;
+
+  for (var v = 0; v < dist.length; v++) {
+    if (visited[v] == false && dist[v] <= min) {
+      min = dist[v];
+      minIndex = v;
+    }
+  }
+  return minIndex;
+}
