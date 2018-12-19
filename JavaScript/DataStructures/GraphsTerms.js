@@ -87,3 +87,31 @@
 //  G 0   0   1   1   0   0   0   0   0
 //  H 0   0   0   1   0   0   0   0   0
 //  I 0   0   0   0   1   0   0   0   0
+
+// Graphs that are not strongly connected (sparse graphs) will be represented
+// by a matrix with many zero entries in the Adjacency matrix. Meaning we would
+// waste space in the computer memory to represent edges that do not exist
+// EX: if we need to find the adjacent vertices of a given vertex, we will have
+// to iterate through the whole row even if this vertex has only one adjacent vertex
+
+// Adjaceny list:
+// We can use a dynamic data structure to represent graphs as well, called an
+// "adjacency list". This consists of a list of adjacent vertices for every
+// vertex of the graph. There are a few different ways we can represent
+// this data structure. To represent the list of adjacent vertices, we can
+// use a list (array), a linked list, or even a hash map or dictionary.
+
+// Demonstrated Adjaceny List
+// A | B C D
+// B | A E F
+// C | A D G
+// D | A C G H
+// E | B I
+// F | B
+// G | C D
+// H | D
+// I | E
+
+// Both representations are very useful and have different properties
+// EX finding out whether the vertices v and w are adjacent is faster using
+// adjacent matrix
