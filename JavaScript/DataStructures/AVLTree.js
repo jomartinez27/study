@@ -138,13 +138,41 @@ class AVLTree extends BinaryTree {
   // 1) Node X, will take place of node Y
   // 2) Node X, the right-hand side subtree (node Z) will be placed as
   //    left-hand side subtree of node Y
-  // 3) Node X, the right-hand side child, will reference Y
-  // 4) Node X, the left-hand side child, will reference node Z
+  // 3) Node X, the left-hand side subtree will be placed as the right-hand side
+  //    subtree of node Z
+  // 4) Node X, the right-hand side child, will reference Y
+  // 5) Node X, the left-hand side child, will reference node Z
 
   // So basically, we are doing an RR rotation first and then an LL rotation
 
   rotationLR(node) {
     node.left = rotationRR(node.left);
     return rotationLL(node);
+  }
+
+  //RL:
+  //       70                 72
+  //      / Y \R             /  \
+  //     50   80            70   80
+  //       L / Z \         /    /  \
+  //      X 72  90        50   75   90
+  //         \
+  //         75
+
+  // Suppose node 75 was the last one inserted, This would make the tree
+  // unbalanced. We need to balance it, these are the steps:
+  // 1) Node X, will take place of node Y
+  // 2) Node X, the right-hand side subtree (node Z) will be placed as
+  //    left-hand side subtree of node Z
+  // 3) Node X, the left-hand side subtree, will be placed as the right-hand
+  //    side subtree of node Y
+  // 4) Node X, the right-hand side child, will reference node Y
+  // 5) Node X, the left-hand side child will reference node Z
+
+  // So basically, we are doing an LL rotation first and then an RR rotation
+
+  rotationRL(node) {
+    node.right = rotationLL(node.right);
+    return rotationRR(node);
   }
 }
