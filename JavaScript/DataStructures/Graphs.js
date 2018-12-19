@@ -1,5 +1,6 @@
 import Dictionary from './Dictionary.js';
-import Queue from './Queue';
+import Queue from './Queue.js';
+import Stack from './Stack.js'
 // ES5
 function Graph() {
   // We will use an array to store the names of all the vertices of the graph
@@ -135,6 +136,90 @@ function Graph() {
     predecessors: pred
     }
   }
+
+  this.dfs = function(callback) {
+    // The DFS steps are recursive, meaning the DFS algorithm uses a stack
+    // to store the calls (a stack created by the recursive calls)
+
+    // The first thing we need to do is create and initialize color array line {1}
+    // For each nonvisited vertex lines {2} and {3}, we will call the recursive
+    // private function dfsVisit, passing the vertex, the color array, and the
+    // callback function line {4}
+
+    // Whenever we visit the u vertex, we will mark it as discovered line {5}
+    // If there is a callback function line {6}, we will execute it to output
+    // the vertex visited. Then the next step is getting hte list of neighbors of u line {7}
+    // For each unvisited (the color white, lines {10} and {8}) neighbor w
+    // line {9} of u, we will call the dfsVisit function, passing w and
+    // the other parameters line {11} add the vertex w to the stack so it can be
+    // visited next. At the end after the vertex and its adjacent vertices are visited
+    // deeply, we will backtrack, meaning the vertex is completely explored and
+    // is marked black line {12}
+    var color = initializeColor(); // {1}
+    for (var i = 0; i < vertices.length; i++) { // {2}
+      if (color[vertices[i]] === "white") { // {3}
+        dfsVisit(vertices[i], color, callback); // {4}
+      }
+    }
+  }
+
+  var dfsVisit = function(u, color, callback) {
+    color[u] = 'grey'; // {5}
+    if (callback) { // {6}
+      callback(u);
+    }
+    var neighbors = adjList.get(u);  // {7}
+    for (var i = 0; i < neighbors.length; i++) { // {8}
+      var w = neighbors[i]; //{9}
+      if (color[w] === 'white') { // {10}
+        dfsVisit(w, color, callback) // {11}
+      }
+    }
+    color[u] = 'black'; // {12}
+  }
+
+  var time = 0; // {1}
+  this.depthFirst = function() {
+    var color = initializeColor(), // {2}
+    d = [],
+    f = [],
+    p = [];
+    time = 0;
+
+    for (var i = 0; i < vertices.length; i++) { // {3}
+      f[vertices[i]] = 0;
+      d[vertices[i]] = 0;
+      p[vertices[i]] = null;
+    }
+    for (var j = 0; j < vertices.length; j++) {
+      if (color[vertices[j]] === 'white') {
+        DFSVisit(vertices[j], color, d, f, p);
+      }
+    }
+    return {  // {4}
+      discovery: d,
+      finished: f,
+      predecessors: p
+    }
+  }
+
+  var DFSVisit = function(u, color, d, f, p) {
+    console.log('discovered ' + u);
+    color[u] = 'grey';
+    d[u] = ++time; // {5}
+    var neighbors = adjList.get(u);
+
+    for (var i = 0; i < neighbors.lenght; i++) {
+      var w = neighbors[i];
+      if (color[w] === 'white') {
+        p[w] = u; // {6}
+        DFSVisit(w, color, d, f, p);
+      }
+    }
+    color[u] = 'black';
+    f[u] = ++time;
+    console.log('explored ' + u);
+  }
 }
 
 function printNode(value) {
@@ -142,22 +227,76 @@ function printNode(value) {
 }
 
 // Test graph
+// var graph = new Graph();
+// var myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']; // {7}
+// for (var i = 0; i < myVertices.length; i++) { // {8}
+//   graph.addVertex(myVertices[i])
+// }
+// graph.addEdge('A', 'B') // {9}
+// graph.addEdge('A', 'C')
+// graph.addEdge('A', 'D')
+// graph.addEdge('C', 'D')
+// graph.addEdge('C', 'G')
+// graph.addEdge('D', 'G')
+// graph.addEdge('D', 'H')
+// graph.addEdge('B', 'E')
+// graph.addEdge('B', 'F')
+// graph.addEdge('E', 'I')
+//
+// // run breadthFirst method and store its return value in a variable,
+// var shortestPathA = graph.breadthFirst(myVertices[0])
+// console.log(shortestPathA)
+//
+// // With the predecessor's array, we can build the path from vertex A to the
+// // other vertices
+//
+// var fromVertex = myVertices[0]; // {9}
+// for (var i = 1; i < myVertices.length; i++) { // {10}
+//   var toVertex = myVertices[i], //{11}
+//   path = new Stack(); // {12}
+//   for (var v = toVertex; v !== fromVertex; v = shortestPathA.predecessors[v]) { // {13}
+//       path.push(v);
+//   }
+//   path.push(fromVertex); // {15}
+//   var s = path.pop(); // {16}
+//   while (!path.isEmpty()) { // {17}
+//     s += " - " + path.pop(); // {18}
+//   }
+//   console.log(s);
+// }
+
+// We will use the vertex A as the source vertex line {9}. For every other
+// vertex (except vertex A, line {10}), we will calculate the path from vertex
+// A to it. To do so, we will get the value of the toVertex method from the
+// vertices array line {11} and we will create a stack to store the path values line {12}
+// Next, we will follow the path from toVertex to fromVertex line {13}.
+// The v variable will receive the value of its predecessor and we will be able to
+// take the same path backwards. We will add the v variable to the stack
+// line {14}. Finally, we will add the origin vertex to the stack as well line {15}
+
+// After this, we will create an s string, and we will assign the orign vertex
+// to it (this will be the last vertex added to th stack, so it is the first
+// item to be popped out line {16}). While the stack is not empty line {17}
+// we will remove an item from the stack and concatenate it to the existing
+// value of the s string line {18}. Finally line {19} we output the s string
+
+
+
+// Testing Topological
 var graph = new Graph();
-var myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']; // {7}
-for (var i = 0; i < myVertices.length; i++) { // {8}
+var myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+for (var i = 0; i < myVertices.length; i++) {
   graph.addVertex(myVertices[i])
 }
-graph.addEdge('A', 'B') // {9}
 graph.addEdge('A', 'C')
 graph.addEdge('A', 'D')
-graph.addEdge('C', 'D')
-graph.addEdge('C', 'G')
-graph.addEdge('D', 'G')
-graph.addEdge('D', 'H')
+graph.addEdge('B', 'D')
 graph.addEdge('B', 'E')
-graph.addEdge('B', 'F')
-graph.addEdge('E', 'I')
+graph.addEdge('C', 'F')
+graph.addEdge('F', 'E')
+var result = graph.depthFirst();
 
-// run breadthFirst method and store its return value in a variable,
-var shortestPathA = graph.breadthFirst(myVertices[0])
-console.log(shortestPathA)
+// this will create the graph, apply the edges execute improved DFS algorithm
+// and store the results inside the result variable.
+// All we have to do is sort the finishing time array and the decreasing
+// order of finishing time.

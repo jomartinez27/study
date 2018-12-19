@@ -228,3 +228,34 @@
 // - The distance d[u] from v to u
 // - The predecessors pred[u], which are used to derive a shortest path
 // from v to every other vertex u
+
+// DFS:
+// the dfs algorithm will start traversing the graph from the first specified
+// vertex, will follow a path until the last vertex of this path is visited
+// will then backtrack, and will finally follow the next path. It visits the
+// vertices first deeply and then widely.
+
+// The DFS algorithm does not need a source vertex. In the DFS algorithm,
+// for each unvisited vertex v in graph G, visit the vertex v
+
+// To visit vertex v, perform the following:
+// 1) Mark v as discovered (grey)
+// 2) For all unvisited (white) neighbors w of v, visit vertex w and mark v
+//    as explored (black).
+
+// Exploring DFS:
+// Given a graph G, the DFS algorithm traverses all the vertices of G and
+// constructs a forest (a collection of rooted trees) together with a set
+// of source vertices (roots) and outputs two arrays: the discovery time and
+// finish explorer time. We can modify the dfs method to return some information for us
+// - The discovery time d[u] of u
+// - The finish time f[u] and when u is marked black
+// - The predecessors p[u] of u
+
+
+// Topological sorting using DFS:
+// When we need to specify the order that some tasks or steps need to be
+// executed in, it is called "topological sorting". EX: Starting a computer
+// science course, there are prerequisites that need to be taken first
+
+// Topological sorting can only be applied to DAGs (Directed Acyclic Graph)
