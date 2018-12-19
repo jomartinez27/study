@@ -1,4 +1,5 @@
 import Dictionary from './Dictionary.js';
+import Queue from './Queue';
 // ES5
 function Graph() {
   // We will use an array to store the names of all the vertices of the graph
@@ -40,21 +41,37 @@ function Graph() {
     }
     return s;
   }
+
+  // BFS algorithm starts traversing the graph from the first specified vertex
+  // and visits all its neighbors (adjacent vertices) first, one layer of the
+  // graph at a time. It visits the vertices first widely then deeply
+
+  // Steps starting at vertex v:
+  // 1) Create a queue Q
+  // 2) Mark v as discovered and enqueue v into Q
+  // 3) While Q is not empty, perform the following:
+  //    a) Dequeue u from Q
+  //    b) Mark u as discovered
+  //    c) Enqueue all the unvisited neighbors w of u
+  //    d) Mark u as explored
+  this.bfs = function(v) {
+    var q = new Queue
+  }
 }
 
 // Test graph
-var graph = new Graph();
-var myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']; // {7}
-for (var i = 0; i < myVertices.length; i++) { // {8}
-  graph.addVertex(myVertices[i])
-}
-graph.addEdge('A', 'B') // {9}
-graph.addEdge('A', 'C')
-graph.addEdge('A', 'D')
-graph.addEdge('C', 'D')
-graph.addEdge('C', 'G')
-graph.addEdge('D', 'G')
-graph.addEdge('D', 'H')
-graph.addEdge('B', 'E')
-graph.addEdge('B', 'F')
-graph.addEdge('E', 'I')
+// var graph = new Graph();
+// var myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']; // {7}
+// for (var i = 0; i < myVertices.length; i++) { // {8}
+//   graph.addVertex(myVertices[i])
+// }
+// graph.addEdge('A', 'B') // {9}
+// graph.addEdge('A', 'C')
+// graph.addEdge('A', 'D')
+// graph.addEdge('C', 'D')
+// graph.addEdge('C', 'G')
+// graph.addEdge('D', 'G')
+// graph.addEdge('D', 'H')
+// graph.addEdge('B', 'E')
+// graph.addEdge('B', 'F')
+// graph.addEdge('E', 'I')

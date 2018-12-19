@@ -115,3 +115,31 @@
 // Both representations are very useful and have different properties
 // EX finding out whether the vertices v and w are adjacent is faster using
 // adjacent matrix
+
+// Traversing:
+// Similar to the tree data structure, we can also visit all the nodes of
+// a graph. There are two algorithms that can be used to traverse a graph
+// called "breadth-first search" (bfs) and "depth-first search" (dfs)
+// Traversing a graph can be used to find specific vertex or a path between
+// two vertices, to check whether the graph is connected, to check whether
+// it contains cycles and so on.
+
+// The idea of graph traversal algorithms is that we must track each vertex
+// when we first visit it and keep track of which vertices have not yet
+// been completely explored. For both traversal graph algorithms, we need
+// to specify which will be the first vertex to be visited
+// To completely explore a vertex, we need to look at each edge of this vertex
+// For each edge connected to a vertex that has not been visited yet, we will
+// mark it as discovered and add it to the list of vertices to be visited
+// In order to have efficient algorithms, we must visit each vertex twice
+// at most when each of its endpoints is explored. Every edge and vertex
+// in the connected graph will be visited
+
+// BFS and DFS are basically the same with only one difference, the data
+// structure used to store the list of vertices to be visited.
+
+// DFS | Stack | By storing the vertices in a stack, the vertices are explored
+//               by lurching along a path, visiting a new adjacent vertex if there is one
+
+// BFS | Queue | By storing the vertices in a queue, the oldest unexplored
+//               vertices are explored first.
