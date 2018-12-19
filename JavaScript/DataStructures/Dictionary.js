@@ -4,7 +4,7 @@
 
 //es5 implementation
 function Dictionary() {
-  var item = {};
+  var items = {};
 
   //set(key, value): adds a new item to the dictionary
   this.set = function(key, value) {
