@@ -37,6 +37,7 @@
 
 // Graphs can be "unidirected" (where edges do not have a direction) or
 // "directed" (digraph) where edges have a direction
+
 // Diagram of a directed
 //                A
 //              / | \
@@ -48,3 +49,41 @@
 //          |
 //          v
 //          I
+
+// A graph is "strongly connected" if there is a path in both directions
+// between every pair of vertices. EX C and D are strongly connected while
+// A and B are not strongly connected
+
+// Graphs can also be "unweighted" or "weighted" in which the edges have weights
+
+// Diagram of a directed
+//                A
+//             2/1| \4
+//             v  v v
+//            B   C <-> D
+//          4/ \3    2\3/1 \1
+//          v  v    vv   v
+//          E   F    G   H
+//          |6
+//          v
+//          I
+
+// Representing the Graph:
+// There is no correct way of representing a graph among the existing possibilities
+// The "Adjacency Matrix" is among the most common. Each node is associated
+// with an integer, which is the array index. We will represent the connectivity
+// between vertices using a two-dimensional array, as array[i][j] === 1 if
+// there is an edge from the node with index i to the node with index j or
+// as array[i][j] === 0
+
+// Demonstrated Matrix
+//    A   B   C   D   E   F   G   H   I
+//  A 0   1   1   1   0   0   0   0   0
+//  B 1   0   0   0   1   1   0   0   0
+//  C 1   0   0   1   0   0   1   0   0
+//  D 1   0   1   0   0   0   1   1   0
+//  E 0   1   0   0   0   0   0   0   1
+//  F 0   1   0   0   0   0   0   0   0
+//  G 0   0   1   1   0   0   0   0   0
+//  H 0   0   0   1   0   0   0   0   0
+//  I 0   0   0   0   1   0   0   0   0
