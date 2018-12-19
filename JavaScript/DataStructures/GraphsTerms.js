@@ -216,3 +216,15 @@
 // mark it as explored set color to black line {14}
 
 // We implemented our bfs to take a callback, in order to print the nodes
+
+// Finding shortest paths using BFS
+// How could we use BFS to answer the following problem:
+// Given a graph G and the source vertex v, find the distance (in number of edges)
+// from v to each vertex uIG along the shortest path between v and u
+
+// Given a vertex v, the BFS algorithm visits all the vertices with distance 1
+// then distance 2, and so on. We can use the BFS algorithm to solve this problem
+// We can modify the bfs method to return some info
+// - The distance d[u] from v to u
+// - The predecessors pred[u], which are used to derive a shortest path
+// from v to every other vertex u

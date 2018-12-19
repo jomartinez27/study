@@ -90,6 +90,51 @@ function Graph() {
       }
     }
   }
+
+  this.breadthFirst = function(v) {
+    // We also need to declare the d array line {1}, which represents the distances
+    // and the pred array line {2} which represents the predecessors. The next
+    // step would be initializing the d array with zero line {4} and the pred
+    // array with null line {5} for every vertex of the graph line {3}
+
+    // when we discover the neighbor w of a vertex u, we will set the predecessor
+    // value of w as u line {7} and also increment the distance line {6}
+    // between v and w by adding 1 and the distance of u (as u is a predecessor
+    //  of w, we have the value d[u] already)
+
+    // at the end of the method, we can return an object with d and pred line {8}
+
+    var color = initializeColor(),
+    queue = new Queue(),
+    d = [], // {1}
+    pred = []; // {2}
+    queue.enqueue(v);
+
+    for (var i = 0; i < vertices.length; i++) { // {3}
+      d[vertices[i]] = 0; // {4}
+      pred[vertices[i]] = null; //{5}
+    }
+
+    while (!queue.isEmpty()) {
+      var u = queue.dequeue(),
+      neighbors = adjList.get(u);
+      color[u] = 'grey';
+      for (var j = 0; j < neighbors.length; j++) {
+        var w = neighbors[j];
+        if (color[w] === 'white') {
+          color[w] = 'grey';
+          d[w] = d[u] + 1 // {6}
+          pred[w] = u; // {7}
+          queue.enqueue(w);
+        }
+      }
+      color[u] = 'black';
+    }
+    return { //{8}
+    distances: d,
+    predecessors: pred
+    }
+  }
 }
 
 function printNode(value) {
@@ -112,3 +157,7 @@ graph.addEdge('D', 'H')
 graph.addEdge('B', 'E')
 graph.addEdge('B', 'F')
 graph.addEdge('E', 'I')
+
+// run breadthFirst method and store its return value in a variable,
+var shortestPathA = graph.breadthFirst(myVertices[0])
+console.log(shortestPathA)
