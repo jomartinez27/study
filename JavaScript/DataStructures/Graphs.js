@@ -46,6 +46,20 @@ function Graph() {
   // and visits all its neighbors (adjacent vertices) first, one layer of the
   // graph at a time. It visits the vertices first widely then deeply
 
+  // Marking the vertices that we have already visited, we will use three
+  // colors to reflect their status:
+  // White: This represents that the vertex has not been visited
+  // Grey: This represents that the vertex has been visited but not explored
+  // Black: This represents that the vertex has been completely explored
+
+  var initializeColor = function() {
+    var color = [];
+    for (var i = 0; i < vertices.length; i++) {
+      color[Vertices[i]] = "whtie"; // {1}
+    }
+    return color;
+  }
+
   // Steps starting at vertex v:
   // 1) Create a queue Q
   // 2) Mark v as discovered and enqueue v into Q
@@ -54,9 +68,32 @@ function Graph() {
   //    b) Mark u as discovered
   //    c) Enqueue all the unvisited neighbors w of u
   //    d) Mark u as explored
-  this.bfs = function(v) {
-    var q = new Queue
+  this.bfs = function(v, callback) {
+    var color = initializeColor(); // {2}
+    var q = new Queue(); //{3}
+    q.enqueue(v); //{4}
+
+    while (!q.isEmpty()) { //{5}
+      var u = q.dequeue(); //{6}
+      neighbors = adjList.get(u); //{7}
+      color[u] = "grey"; //{8}
+      for (var i = 0; i < neighbors.length; i++) { //{9}
+        var w = neighbors[i]; //{10}
+        if (color[w] === "white") { //{11}
+          color[w] = "grey"; //{12}
+          q.enqueue(w); //{13}
+        }
+      }
+      color[u] = "black"; //{14}
+      if (callback) {  //{15}
+        callback(u);
+      }
+    }
   }
+}
+
+function printNode(value) {
+  console.log('Visited vertex: ' + value);
 }
 
 // Test graph

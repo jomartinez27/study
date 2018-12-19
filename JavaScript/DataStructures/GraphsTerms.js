@@ -143,3 +143,76 @@
 
 // BFS | Queue | By storing the vertices in a queue, the oldest unexplored
 //               vertices are explored first.
+
+
+
+// BFS implementation:
+// var initializeColor = function() {
+//   var color = [];
+//   for (var i = 0; i < vertices.length; i++) {
+//     color[Vertices[i]] = "whtie"; // {1}
+//   }
+//   return color;
+// }
+
+// Steps starting at vertex v:
+// 1) Create a queue Q
+// 2) Mark v as discovered and enqueue v into Q
+// 3) While Q is not empty, perform the following:
+//    a) Dequeue u from Q
+//    b) Mark u as discovered
+//    c) Enqueue all the unvisited neighbors w of u
+//    d) Mark u as explored
+// this.bfs = function(v, callback) {
+//   var color = initializeColor(); // {2}
+//   var q = new Queue(); //{3}
+//   q.enqueue(v); //{4}
+//
+//   while (!q.isEmpty()) { //{5}
+//     var u = q.dequeue(); //{6}
+//     neighbors = adjList.get(u); //{7}
+//     color[u] = "grey"; //{8}
+//     for (var i = 0; i < neighbors.length; i++) { //{9}
+//       var w = neighbors[i]; //{10}
+//       if (color[w] === "white") { //{11}
+//         color[w] = "grey"; //{12}
+//         q.enqueue(w); //{13}
+//       }
+//     }
+//     color[u] = "black"; //{14}
+//     if (callback) {  //{15}
+//       callback(u);
+//     }
+//   }
+// }
+
+// For both BFS and DFS, we need to mark the vertices visited. To do so,
+// we will use a helper array called color. As and when we start executing
+// the BFS and DFS algorithms, all the vertices have the color white line {1}
+// so we can create a helper functtion called initializeColor, which will do
+// this for us for both the algorithms that we are implementing.
+
+// The first thing we will do is use the initializeColor function to initialize
+// the color array with the white color line {2}. We also need to declare and
+// create a Queue instance line {3} that will store the vertices that need to be
+// visited and explored
+
+// BFS method receives a vertex that will be used as the point of origin for
+// our algorithm. As we need a starting point, we will enqueue this vertex into
+// the queue line {4}
+
+// If the queue is not empty line {5}, we will remove a vertex from the queue
+// be dequeuing it line {6}, and we will get its adjacency list that contains
+// all its neighbors line {7}. We will also mark this vertex as grey, meaning
+// we have discovered it (but have not finished exploring it) line {8}
+
+// For each neighbor of u line {9}, we will obtain its value (the name of the vertex line {10})
+// and if it has not been visited yet (the color set to white line {11})
+// we will mark that we have discovered it (the color is set to grey line {12})
+// and will add this vertex to the queue line {13} so that it can be finished
+// exploring when we dequeue it from the queue
+
+// When we finish exploring the vertex and its adjacent vertices, we will
+// mark it as explored set color to black line {14}
+
+// We implemented our bfs to take a callback, in order to print the nodes
