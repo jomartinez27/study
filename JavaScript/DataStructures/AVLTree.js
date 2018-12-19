@@ -45,6 +45,14 @@ class AVLTree extends BinaryTree {
     // side subtree (hr) and the left-hand side subtree (hl). The result of
     // The result of hr - hl needs to be 0, 1, or -1. If the result is different
     // from these values, it means the tree needs to be balanced
+
+    // if we are inserting a node in the left-hand side subtree and the value
+    // of the node is smaller than the value of its left-hand side child, we will
+    // do an LL rotation, otherwise we will do an LR rotation
+
+    // If we are inserting a node in the right-hand side subtree and the value
+    // of the node is bigger than the value of its right-hand side child,
+    // we will do an RR rotation. Otherwise we will do an RL rotation
     if (node === null) {
       node = new Node (element);
     } else if (element < node.key) {
@@ -53,12 +61,22 @@ class AVLTree extends BinaryTree {
         // verify if balancing is needed {1}
         if ((heightNode(node.left) - heightNode(node.right)) > 1) {
           // do rotations {3}
+          if (element < node.left.key) {
+            node = rotationLL(node);
+          } else {
+            node = rotationLR(node)
+          }
         }
       }
     } else if (element > node.key) {
       //veryify if balancing is needed {2}
       if ((heightNode(node.right) - heightNode(node.left)) > 1) {
         // do rotations {4}
+        if (element > node.right.key) {
+          node = rotationRR(node);
+        } else {
+          node = rotationRL(node);
+        }
       }
     }
     return node;
