@@ -21,32 +21,32 @@ var graph = [[0, 2, 4, 0, 0, 0],
              [0, 0, 0, 3, 0, 2],
              [0, 0, 0, 0, 0, 0]]
 
-Graph.prototype.dijkstra = function(src) {
-  var dist = []
-  var visited = []
-  var length = this.graph.length;
-
-  for (let i = 0; i < length; i++) { // {1}
-    dist[i] = INF;
-    visited[i] = false;
-  }
-  dist[src] = 0; // {2}
-  for (let i = 0; i < length - 1; i++) { // {3}
-    var u = minDistance(dist, visited) // {4}
-    visited[u] = true; // {5}
-
-    for (var v = 0; v < length; v++) {
-      if (!visited[v] && this.graph[u][v] != 0 && dist[u] != INF &&
-        dist[u] + this.graph[u][v] < dist[v]) { // {6}
-          dist[v] = dist[u] + this.graph[u][v]; // {7}
-        }
-    }
-  }
-  return dist; // {8}
-}
+// Graph.prototype.dijkstra = function(src) {
+//   var dist = []
+//   var visited = []
+//   var length = this.graph.length;
+//
+//   for (let i = 0; i < length; i++) { // {1}
+//     dist[i] = INF;
+//     visited[i] = false;
+//   }
+//   dist[src] = 0; // {2}
+//   for (let i = 0; i < length - 1; i++) { // {3}
+//     var u = minDistance(dist, visited) // {4}
+//     visited[u] = true; // {5}
+//
+//     for (var v = 0; v < length; v++) {
+//       if (!visited[v] && this.graph[u][v] != 0 && dist[u] != INF &&
+//         dist[u] + this.graph[u][v] < dist[v]) { // {6}
+//           dist[v] = dist[u] + this.graph[u][v]; // {7}
+//         }
+//     }
+//   }
+//   return dist; // {8}
+// }
 
 // Line {1}: First we need to initialize all the distances, (dist) as infinite
-//           JavaScript max number INF = Number.MAX_SAFE_INTEGER) and visitied[] as false
+//           JavaScript max number INF = Number.MAX_SAFE_INTEGER) and visited[] as false
 // Line {2}: Second, we will set the distance of the source vertex from itself as 0
 // Line {3}: Then, we will find the shortest path for all vertices
 // Line {4}: To do so, we need to select the minimum distance vertex from
@@ -58,17 +58,11 @@ Graph.prototype.dijkstra = function(src) {
 //           containing the shortest path value from the vertex source (src)
 //           to all the other vertices of the graph
 
-
-
-
-
-
-// To calculate the minDistance between, we will search for the minimum
-// value in the dist array, and return the array index that contains the minimum value
-var minDistance = function(dist, visited) {
-  var min = INF, minIndex = -1;
-
-  for (var v = 0; v < dist.length; v++) {
+const INF = Number.MAX_SAFE_INTEGER;
+const minDistance = (dist, visited) => {
+  let min = INF;
+  let minIndex = -1;
+  for (let v = 0; v < dist.length; v++) {
     if (visited[v] == false && dist[v] <= min) {
       min = dist[v];
       minIndex = v;
@@ -76,3 +70,41 @@ var minDistance = function(dist, visited) {
   }
   return minIndex;
 }
+
+const dijkstra = (graph, src) => {
+  const dist = [];
+  const visited = [];
+  const { length } = graph;
+  for (let i = 0; i < length; i++) {
+    dist[i] = INF;
+    visited[i] = false;
+  }
+  dist[src] = 0;
+  for (let i = 0; i < length - 1; i++) {
+    const u = minDistance(dist, visited)
+      visited[u] = true;
+      for (let v = 0; v < length; v++) {
+        if (!visited[v] && graph[u][v] !== 0 && dist[u] !== INF && dist[u] + graph[u][v] < dist[v]) {
+          dist[v] = dist[u] + graph[u][v];
+        }
+      }
+    }
+  return dist;
+}
+
+
+
+
+// To calculate the minDistance between, we will search for the minimum
+// value in the dist array, and return the array index that contains the minimum value
+// var minDistance = function(dist, visited) {
+//   var min = INF, minIndex = -1;
+//
+//   for (var v = 0; v < dist.length; v++) {
+//     if (visited[v] == false && dist[v] <= min) {
+//       min = dist[v];
+//       minIndex = v;
+//     }
+//   }
+//   return minIndex;
+// }
