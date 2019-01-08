@@ -45,4 +45,28 @@ class Tree {
     }
     return false;
   }
+
+  breadthFirstSearch(value) {
+    // BFS is similar to DFS, but the difference is we want to check all sibling
+    // elements before going to the next row of the tree. We can accomplish this
+    // with a Queue. The Queue require us to use the push method instead of
+    // unsihft method when handling the children of the node. Instead of
+    // taking the children of a node and setting them into the front of the
+    // collections array, we will instead push them to the end. This makes
+    // sure that we will check all sibling elements before going to the next
+    // row of the tree
+
+    let collection = [this.root];
+
+    while (collection.lenght) {
+      let node = collection.shift();
+
+      if (node.value === value) {
+        return true;
+      } else {
+        collection.push(...node.children);
+      }
+    }
+    return false;
+  }
 }

@@ -182,7 +182,6 @@ export class BinaryTree {
     let s = new Stack();
     s.push(this.root);
     while (s.size() > 0) {
-      debugger;
       let current = s.pop();
       if (current.left) {
         s.push(current.left);
