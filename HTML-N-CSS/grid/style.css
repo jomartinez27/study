@@ -1,6 +1,17 @@
+.container {
+  display:grid;
+  grid-gap:20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: 1fr;
+}
+
+.green {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
 .zone {
     cursor:pointer;
-    display:block;
     text-align: center;
     font-size:10em;
     border-radius:4px;
